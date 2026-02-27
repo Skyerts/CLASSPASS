@@ -1,0 +1,11 @@
+Place your holiday images here with these exact filenames:
+- new_years_day.jpg
+- maundy_thursday.jpg
+- good_friday.jpg
+- araw_ng_kagitingan.jpg
+- labor_day.jpg
+- independence_day.jpg
+- national_heroes_day.jpg
+- bonifacio_day.jpg
+- christmas_day.jpg
+- rizal_day.jpg
