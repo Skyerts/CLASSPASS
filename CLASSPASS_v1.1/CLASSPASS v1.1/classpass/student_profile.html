@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClassPass — Profile</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="dashboard" >
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" id="sb-avatar"><i class="bi bi-person-fill"></i></div>
+        <div>
+          <div class="sidebar-name" id="sb-name">Kurt Cortez</div>
+          <div class="sidebar-role" id="sb-role">Student</div>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="nav-item" data-nav="home" href="student_home.html"><i class="bi bi-house-fill"></i> Home</a>
+      <a class="nav-item" data-nav="profile" href="student_profile.html"><i class="bi bi-person-circle"></i> Profile</a>
+      <a class="nav-item" data-nav="subjects" href="student_subjects.html"><i class="bi bi-book-fill"></i> Subjects</a>
+      <a class="nav-item" data-nav="requests" href="student_requests.html"><i class="bi bi-file-earmark-text-fill"></i> Requests</a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="btn-logout" onclick="logout()"><i class="bi bi-box-arrow-left"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-title">My Profile</div>
+    <div class="page-subtitle">View and manage your student information.</div>
+
+    <div class="card">
+      <div class="profile-section">
+        <div class="profile-avatar-col">
+          <div class="profile-avatar-big" id="profile-avatar">
+            <i class="bi bi-person-fill"></i>
+            <div class="overlay"><i class="bi bi-camera-fill"></i></div>
+          </div>
+          <button class="btn-upload"><i class="bi bi-upload"></i> Upload Photo</button>
+          
+
+          <div style="font-size:0.78rem;color:var(--text-light);text-align:center">Click photo or button to upload</div>
+        </div>
+
+        <div class="profile-info-col">
+          <div class="info-row">
+            <div class="info-group">
+              <label>Full Name</label>
+              <div class="value" id="prof-name">—</div>
+            </div>
+            <div class="info-group">
+              <label>Student ID</label>
+              <div class="value" id="prof-id">—</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-group">
+              <label>Email Address</label>
+              <div class="value" id="prof-email">—</div>
+            </div>
+            <div class="info-group">
+              <label>Phone Number</label>
+              <div class="value" id="prof-phone">—</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-group">
+              <label id="prof-extra1-label">Course</label>
+              <div class="value" id="prof-extra1">—</div>
+            </div>
+            <div class="info-group">
+              <label id="prof-extra2-label">Year & Section</label>
+              <div class="value" id="prof-extra2">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Absence Summary -->
+    <div class="card">
+      <div class="card-header">
+        <i class="bi bi-bar-chart-fill"></i>
+        <div><h3>Absence Summary</h3><p>Your absence request overview this semester</p></div>
+      </div>
+      <div class="stats-grid" style="margin-top:0">
+        <div class="stat-card">
+          <div class="stat-label">Total Filed</div>
+          <div class="stat-value red" id="ps-total">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Approved</div>
+          <div class="stat-value green" id="ps-approved">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Pending / Denied</div>
+          <div class="stat-value amber" id="ps-pending">—</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="jquery/jquery.js"></script>
+<script src="js/script.js"></script>
+<script>
+  if (requireAuth('student')) {
+    setupSidebar('profile');
+    renderProfile();
+    // Summary stats
+    const myR = REQUESTS.filter(r => r.studentId === 'student');
+    $('#ps-total').text(myR.length);
+    $('#ps-approved').text(myR.filter(r=>r.status==='approved').length);
+    $('#ps-pending').text(myR.filter(r=>r.status==='pending'||r.status==='denied').length);
+  }
+</script>
+</body>
+</html>

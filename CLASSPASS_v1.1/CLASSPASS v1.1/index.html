@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassPass | Leave Request App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Cursor Light Effect -->
+    <div class="cursor-light" id="cursor-light"></div>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="brand">
+                <img src="classpass/logo.png" alt="School Logo" class="logo-img">
+                <span class="logo-text">ClassPass</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="classpass/login.html" class="btn-login-nav">Log In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h2>Easy Leave Requests for PCCians!</h2>
+        <p>ClassPass helps students and teachers manage leave requests quickly and efficiently.</p>
+        <a href="classpass/login.html" class="btn-hero">Get Started</a>
+    </section>
+
+    <!-- About / Features Section -->
+    <section id="about" class="about">
+        <h2>Why Choose ClassPass?</h2>
+        <div class="features">
+            <div class="feature fade-in">
+                <div class="feature-icon">📋</div>
+                <h3>Simple Requests</h3>
+                <p>Students can submit leave requests in just a few clicks without any paperwork.</p>
+            </div>
+            <div class="feature fade-in">
+                <div class="feature-icon">✅</div>
+                <h3>Quick Approval</h3>
+                <p>Teachers can easily review and approve or deny requests online anytime.</p>
+            </div>
+            <div class="feature fade-in">
+                <div class="feature-icon">🗂️</div>
+                <h3>Organized Records</h3>
+                <p>All leave data is neatly organized and easy to access for everyone.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form onsubmit="handleContact(event)">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 ClassPass — Pasig Catholic College. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const cursorLight = document.getElementById('cursor-light');
+        document.addEventListener('mousemove', (e) => {
+            cursorLight.style.left = e.clientX + 'px';
+            cursorLight.style.top = e.clientY + 'px';
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        function handleContact(e) { e.preventDefault(); }
+    </script>
+</body>
+</html>
